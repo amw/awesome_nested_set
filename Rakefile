@@ -9,14 +9,14 @@ end
 require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rcov/rcovtask'
-require "load_multi_rails_rake_tasks" 
+#require "load_multi_rails_rake_tasks" 
 
 Jeweler::Tasks.new do |s|
-  s.name = "awesome_nested_set"
+  s.name = "rd_awesome_nested_set"
   s.summary = "An awesome nested set implementation for Active Record"
   s.description = s.summary
   s.email = "info@collectiveidea.com"
-  s.homepage = "http://github.com/collectiveidea/awesome_nested_set"
+  s.homepage = "http://github.com/railsdog/awesome_nested_set"
   s.authors = ["Brandon Keepers", "Daniel Morrison"]
   s.add_dependency "activerecord", ['>= 1.1']
   s.has_rdoc = true
