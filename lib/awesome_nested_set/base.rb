@@ -554,7 +554,7 @@ module CollectiveIdea #:nodoc:
                 else          target[parent_column_name]
               end
 
-              self.class.base_class.update_all([
+              nested_set_scope.update_all([
                 "#{quoted_left_column_name} = CASE " +
                   "WHEN #{quoted_left_column_name} BETWEEN :a AND :b " +
                     "THEN #{quoted_left_column_name} + :d - :b " +
@@ -571,7 +571,7 @@ module CollectiveIdea #:nodoc:
                   "WHEN #{self.class.base_class.primary_key} = :id THEN :new_parent " +
                   "ELSE #{quoted_parent_column_name} END",
                 {:a => a, :b => b, :c => c, :d => d, :id => self.id, :new_parent => new_parent}
-              ], nested_set_scope.where_values)
+              ])
             end
             target.reload_nested_set if target
             self.reload_nested_set
