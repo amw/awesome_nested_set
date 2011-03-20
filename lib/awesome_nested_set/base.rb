@@ -576,7 +576,12 @@ module CollectiveIdea #:nodoc:
             target.reload_nested_set if target
             self.reload_nested_set
             run_callbacks(:after_move)
-            self.update_depth if depth?
+            if depth?
+              new_depth = level
+              depth_change = self.depth.to_i - new_depth
+              self_and_descendants.update_all(['depth=depth - ?', depth_change])
+              self.attributes['depth'] = new_depth
+            end
           end
 
         end
